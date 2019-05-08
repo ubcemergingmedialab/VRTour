@@ -1,0 +1,3 @@
+[submodule "Assets/Scripts/VRTour-Serialization"]
+	path = Assets/Scripts/VRTour-Serialization
+	url = https://github.com/ubcemergingmedialab/VRTour-Serialization.git
