@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour {
 	
     public void BuildTour(Tour t)
     {
+        if (nodes == null)
+            nodes = new Dictionary<int, NodeBehaviour>();
         StartCoroutine(SetupTour(t));
     }
 

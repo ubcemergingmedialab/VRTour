@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using VRTour.Serialize;
 
 [CustomEditor(typeof(GameManager))]
 public class TourBuilder : Editor {
 
     string tourId;
     UnityEngine.Object jsonFile;
-    bool loadFromWebsite;
-    bool loadFromFile;
+    bool loadFromWebsite = true;
+    GameManager gm;
 
     public override void OnInspectorGUI()
     {
@@ -22,29 +23,21 @@ public class TourBuilder : Editor {
         loadFromWebsite = EditorGUILayout.BeginToggleGroup("Load from Online ID?", loadFromWebsite);
         tourId = EditorGUILayout.TextField("Tour ID", tourId);
         EditorGUILayout.EndToggleGroup();
-        loadFromFile = EditorGUILayout.BeginToggleGroup("Load from static file?", loadFromFile);
+        loadFromWebsite = !EditorGUILayout.BeginToggleGroup("Load from static file?", !loadFromWebsite);
         jsonFile = EditorGUILayout.ObjectField("File to use", jsonFile, typeof(TextAsset), false);
         EditorGUILayout.EndToggleGroup();
         
 
-        GameManager gm = (GameManager)target;
+        gm = (GameManager)target;
         if (GUILayout.Button("Build Tour"))
         {
-            if(loadFromWebsite && loadFromFile)
-            {
-                Debug.Log("Error! Can only choose file or website");
-            }
-            else if (loadFromFile)
-            {
-                LoadFromFile();
-            }
-            else if (loadFromWebsite)
+            if (loadFromWebsite)
             {
                 LoadFromWebsite();
             }
             else
             {
-                Debug.Log("Error! Must provide a source");
+                LoadFromFile();
             }
         }
     }
@@ -56,6 +49,8 @@ public class TourBuilder : Editor {
 
     private void LoadFromFile()
     {
-
+        TextAsset json = (TextAsset) jsonFile;
+        Tour toBuild = Utility.CreateFromJSON(json.text);
+        gm.BuildTour(toBuild);
     }
 }
