@@ -13,6 +13,7 @@ public class AnswerBehaviour : MonoBehaviour {
     [SerializeField]
     private Text ansText;
 
+    public TourBuilderScriptable instance;
     private Button b;
 
     #region PRIVATE_MEMBER_VARIABLES
@@ -31,24 +32,20 @@ public class AnswerBehaviour : MonoBehaviour {
        //Some kind of teleport action goes here
     }
 
-    public void Setup(Destination d)
+    public void Setup(Destination d, TourBuilderScriptable tb)
     {
+        instance = tb;
         dest = d;
         ansText.text = dest.label;
-        StartCoroutine(SetupAnswer());
+        SetupAnswer();
     }
 
-    private IEnumerator SetupAnswer()
+    private void SetupAnswer()
     {
         NodeBehaviour value;
-        if (GameManager.instance.nodes.TryGetValue(dest.dest.nodeId, out value))
+        if (!instance.nodes.TryGetValue(dest.dest.nodeId, out value))
         {
-            yield return null;
-        }
-        else
-        {
-            value = GameManager.instance.BuildNode(dest.dest);
-            yield return null;
+            value = instance.BuildNode(dest.dest);
         }
 
         target = value;

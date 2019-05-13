@@ -1,57 +1,43 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using VRTour.Serialize;
 
-public class GameManager : MonoBehaviour {
+[CreateAssetMenu(fileName = "Tour", menuName = "Build Tour", order = 1)]
+public class TourBuilderScriptable : ScriptableObject
+{
+    public GameObject tourPrefab;
+    public GameObject nodePrefab;
+    public GameObject answerPrefab;
 
-    public static GameManager instance = null;
-    public GameObject player;
     public IDictionary<int, NodeBehaviour> nodes;
-    
 
-    [SerializeField]
-    private GameObject tourPrefab;
-    [SerializeField]
-    private GameObject nodePrefab;
-    [SerializeField]
-    private GameObject answerPrefab;
+    public Tour toBuild;
 
     private GameObject tourObj;
     private NodeBehaviour start;
     private TourBehaviour tour;
 
-    // Use this for initialization
-    void Awake () {
-		if(instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        if(nodes == null)
-            nodes = new Dictionary<int, NodeBehaviour>();
-	}
-	
-	
-    public void BuildTour(Tour t)
+    public void LoadTour(Tour t)
     {
-        if (nodes == null)
-            nodes = new Dictionary<int, NodeBehaviour>();
-        StartCoroutine(SetupTour(t));
+        toBuild = t;
     }
 
-    private IEnumerator SetupTour(Tour t)
+    public void BuildTour()
+    {
+        nodes = new Dictionary<int, NodeBehaviour>();
+        SetupTour(toBuild);
+    }
+
+
+    private void SetupTour(Tour t)
     {
         tourObj = Instantiate(tourPrefab);
         tour = tourObj.GetComponent<TourBehaviour>();
-        tour.Setup(t);
+        tour.Setup(t, this);
         nodes = new Dictionary<int, NodeBehaviour>();
         start = BuildNode(t.startPoint);
-        yield return null;
     }
 
     public NodeBehaviour BuildNode(Node toBuild)
@@ -59,7 +45,7 @@ public class GameManager : MonoBehaviour {
         GameObject nodeObj = Instantiate(nodePrefab, tourObj.transform);
         NodeBehaviour toReturn = nodeObj.GetComponent<NodeBehaviour>();
         //Constructs the node based on the deserialized node in toBuild and adds it to nodes
-        toReturn.Setup(toBuild);
+        toReturn.Setup(toBuild, this);
         return toReturn;
 
     }
@@ -68,11 +54,9 @@ public class GameManager : MonoBehaviour {
     {
         GameObject ansObj = Instantiate(answerPrefab, t);
         AnswerBehaviour toReturn = ansObj.GetComponent<AnswerBehaviour>();
-        toReturn.Setup(d);
+        toReturn.Setup(d, this);
 
         return toReturn;
 
     }
-
-
 }

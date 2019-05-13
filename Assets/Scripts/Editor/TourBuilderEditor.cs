@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 using VRTour.Serialize;
 
-[CustomEditor(typeof(GameManager))]
-public class TourBuilder : Editor {
+[CustomEditor(typeof(TourBuilderScriptable))]
+public class TourBuilderScriptableEditor : Editor
+{
 
     string tourId;
     UnityEngine.Object jsonFile;
     bool loadFromWebsite = true;
-    GameManager gm;
+    TourBuilderScriptable tb;
 
     public override void OnInspectorGUI()
     {
@@ -26,31 +25,26 @@ public class TourBuilder : Editor {
         loadFromWebsite = !EditorGUILayout.BeginToggleGroup("Load from static file?", !loadFromWebsite);
         jsonFile = EditorGUILayout.ObjectField("File to use", jsonFile, typeof(TextAsset), false);
         EditorGUILayout.EndToggleGroup();
-        
 
-        gm = (GameManager)target;
-        if (GUILayout.Button("Build Tour"))
+
+        tb = (TourBuilderScriptable)target;
+        if (GUILayout.Button("Load Tour"))
         {
             if (loadFromWebsite)
             {
-                LoadFromWebsite();
+                //LoadFromWebsite();
             }
             else
             {
-                LoadFromFile();
+                TextAsset json = (TextAsset)jsonFile;
+                Tour t = Utility.CreateFromJSON(json.text);
+                tb.LoadTour(t);
             }
         }
-    }
 
-    private void LoadFromWebsite()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void LoadFromFile()
-    {
-        TextAsset json = (TextAsset) jsonFile;
-        Tour toBuild = Utility.CreateFromJSON(json.text);
-        gm.BuildTour(toBuild);
+        if (GUILayout.Button("Build Tour"))
+        {
+            tb.BuildTour();
+        }
     }
 }

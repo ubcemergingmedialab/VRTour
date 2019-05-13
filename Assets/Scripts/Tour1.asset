@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681a6c087c9eed54bb26f91ce3944ee9, type: 3}
+  m_Name: Tour1
+  m_EditorClassIdentifier: 
+  tourPrefab: {fileID: 1932938866584564, guid: ab08ead3d819969478e413dfbff3f9ab, type: 2}
+  nodePrefab: {fileID: 1462500528896114, guid: df5b9f75499749f4ba820b5e5a522d81, type: 2}
+  answerPrefab: {fileID: 1915646015374218, guid: e90da02b10ea060428ee044ec9e93d19,
+    type: 2}
+  toBuild:
+    name: test
+    startPoint:
+      nodeId: 0
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+      label: Sample Question
+      answers:
+      - label: Answer 1
+        dest:
+          nodeId: 1
+          position: {x: 4, y: 0, z: 4}
+          rotation: {x: 180, y: 0, z: 0}
+          label: Correct
+          answers:
+          - label: answer 3
+            dest:
+              nodeId: 3
+              position: {x: 0, y: 0, z: 0}
+              rotation: {x: 0, y: 0, z: 0}
+              label: End
+              answers: []
+      - label: Answer 2
+        dest:
+          nodeId: 2
+          position: {x: 3, y: 0, z: 3}
+          rotation: {x: 30, y: 0, z: 0}
+          label: Dead End
+          answers: []

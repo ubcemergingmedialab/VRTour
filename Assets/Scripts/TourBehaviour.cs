@@ -12,10 +12,11 @@ public class TourBehaviour : MonoBehaviour {
 
     private Tour tour;
 
-	
+    public TourBuilderScriptable instance;
 
-    public void Setup(Tour t)
+    public void Setup(Tour t, TourBuilderScriptable tb)
     {
+        instance = tb;
         tour = t;
         tourName.text = tour.name;
     }
