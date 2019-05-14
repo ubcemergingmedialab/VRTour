@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4728335401204776}
-  - component: {fileID: 114123975859030700}
+  - component: {fileID: 114920109129436022}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114123975859030700
+--- !u!114 &114920109129436022
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,11 +48,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403639268402772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b11f59599e3e64eaa2893921b9cc62, type: 3}
+  m_Script: {fileID: 11500000, guid: 612b1354ba655e240913a8678532e912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tour: {fileID: 11400000, guid: 8d43201f0658a1f4ba567a237180c8f7, type: 2}
   player: {fileID: 0}
-  tourPrefab: {fileID: 1932938866584564, guid: ab08ead3d819969478e413dfbff3f9ab, type: 2}
-  nodePrefab: {fileID: 1462500528896114, guid: df5b9f75499749f4ba820b5e5a522d81, type: 2}
-  answerPrefab: {fileID: 1915646015374218, guid: e90da02b10ea060428ee044ec9e93d19,
-    type: 2}

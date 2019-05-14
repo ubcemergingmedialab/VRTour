@@ -11,14 +11,14 @@ public class NodeBehaviour : MonoBehaviour {
     [SerializeField]
     private RectTransform destinationPanel;
 
-    public TourBuilderScriptable instance;
-
+    private TourBuilderScriptable instance;
     private Node node;
 
     /// <summary>
     /// Setup the node prefab with specific deserialized object n
     /// </summary>
     /// <param name="n">Deserialized Node object to setup</param>
+    /// <param name="tb">Tour Builder that is building this node</param>
     public void Setup(Node n, TourBuilderScriptable tb)
     {
         instance = tb;

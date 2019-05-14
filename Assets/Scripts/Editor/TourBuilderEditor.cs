@@ -4,6 +4,10 @@ using UnityEditor;
 using UnityEngine;
 using VRTour.Serialize;
 
+/// <summary>
+/// Custom editor for TourBuilderScriptable. Allows for loading tours from file or url 
+/// \todo implement load from url
+/// </summary>
 [CustomEditor(typeof(TourBuilderScriptable))]
 public class TourBuilderScriptableEditor : Editor
 {
@@ -32,7 +36,7 @@ public class TourBuilderScriptableEditor : Editor
         {
             if (loadFromWebsite)
             {
-                //LoadFromWebsite();
+                throw new System.NotImplementedException();
             }
             else
             {

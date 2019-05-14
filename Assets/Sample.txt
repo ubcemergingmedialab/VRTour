@@ -10,13 +10,13 @@
 		"dest":{
 			"nodeId":1,
 			"position":{"x":4,"y":0,"z":4},
-			"rotation":{"x":180,"y":0,"z":0},
+			"rotation":{"x":0,"y":180,"z":0},
 			"label":"Correct",
 			"answers":[
 				{"label":"answer 3",
 				"dest":{
 					"nodeId":3,
-					"position":{"x":0,"y":0,"z":0},
+					"position":{"x":7,"y":0,"z":0},
 					"rotation":{"x":0,"y":0,"z":0},
 					"label":"End",
 					"answers":[]}}]
@@ -25,7 +25,7 @@
 		"dest":{
 			"nodeId":2,
 			"position":{"x":3,"y":0,"z":3},
-			"rotation":{"x":30,"y":0,"z":0},
+			"rotation":{"x":-30,"y":0,"z":0},
 			"label":"Dead End",
 			"answers":[]
 		}}]

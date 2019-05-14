@@ -28,8 +28,7 @@ public class AnswerBehaviour : MonoBehaviour {
 
     void OnClick()
     {
-        Debug.Log("test");
-       //Some kind of teleport action goes here
+        GameManager.instance.TeleportToNode(target);
     }
 
     public void Setup(Destination d, TourBuilderScriptable tb)
