@@ -5,15 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     [SerializeField]
-    private TourBuilderScriptable tour;
-    [SerializeField]
     private GameObject player;
 
     public static GameManager instance = null;
-
-    private IDictionary<int, NodeBehaviour> nodes;
-
-    private NodeBehaviour start;
 
     // Use this for initialization
     void Awake () {
@@ -25,18 +19,7 @@ public class GameManager : MonoBehaviour {
         {
             instance = this;
         }
-        //nodes = new Dictionary<int, NodeBehaviour>();
-        //tour.SetupGM(instance);
 	}
-	
-    /*
-	public void Setup (IDictionary<int, NodeBehaviour> n, int startId) {
-        nodes = n;
-        Debug.Log(nodes.Count);
-        start = nodes[startId];
-        TeleportToNode(start);
-	}
-    */
 
     public void TeleportToNode(NodeBehaviour n)
     {
