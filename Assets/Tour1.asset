@@ -16,31 +16,11 @@ MonoBehaviour:
   answerPrefab: {fileID: 1915646015374218, guid: e90da02b10ea060428ee044ec9e93d19,
     type: 2}
   toBuild:
-    name: test
+    name: 
+    id: 
     startPoint:
       nodeId: 0
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
-      label: Sample Question
-      answers:
-      - label: Answer 1
-        dest:
-          nodeId: 1
-          position: {x: 4, y: 0, z: 4}
-          rotation: {x: 0, y: 180, z: 0}
-          label: Correct
-          answers:
-          - label: answer 3
-            dest:
-              nodeId: 3
-              position: {x: 7, y: 0, z: 0}
-              rotation: {x: 0, y: 0, z: 0}
-              label: End
-              answers: []
-      - label: Answer 2
-        dest:
-          nodeId: 2
-          position: {x: 3, y: 0, z: 3}
-          rotation: {x: -30, y: 0, z: 0}
-          label: Dead End
-          answers: []
+      label: 
+      answers: []

@@ -4,49 +4,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VRTour.Serialize;
-
-[RequireComponent(typeof(Button))]
-public class AnswerBehaviour : MonoBehaviour {
-
-    [SerializeField]
-    private NodeBehaviour target;
-    [SerializeField]
-    private Text ansText;
-
-    public TourBuilderScriptable instance;
-    private Button b;
-
-    #region PRIVATE_MEMBER_VARIABLES
-    private Destination dest;
-    #endregion //PRIVATE_MEMBER_VARIABLES
-
-    private void Start()
+namespace VRTour
+{
+    [RequireComponent(typeof(Button))]
+    public class AnswerBehaviour : MonoBehaviour
     {
-        b = GetComponent<Button>();
-        b.onClick.AddListener(OnClick);
-    }
 
-    void OnClick()
-    {
-        GameManager.instance.TeleportToNode(target);
-    }
+        [SerializeField]
+        private NodeBehaviour target;
+        [SerializeField]
+        private Text ansText;
 
-    public void Setup(Destination d, TourBuilderScriptable tb)
-    {
-        instance = tb;
-        dest = d;
-        ansText.text = dest.label;
-        SetupAnswer();
-    }
+        public TourBuilderScriptable instance;
+        private Button b;
 
-    private void SetupAnswer()
-    {
-        NodeBehaviour value;
-        if (!instance.nodes.TryGetValue(dest.dest.nodeId, out value))
+        #region PRIVATE_MEMBER_VARIABLES
+        private Destination dest;
+        #endregion //PRIVATE_MEMBER_VARIABLES
+
+        private void Start()
         {
-            value = instance.BuildNode(dest.dest);
+            b = GetComponent<Button>();
+            b.onClick.AddListener(OnClick);
         }
 
-        target = value;
+        void OnClick()
+        {
+            GameManager.instance.TeleportToNode(target);
+        }
+
+        public void Setup(Destination d, TourBuilderScriptable tb)
+        {
+            instance = tb;
+            dest = d;
+            ansText.text = dest.label;
+            SetupAnswer();
+        }
+
+        private void SetupAnswer()
+        {
+            NodeBehaviour value;
+            if (!instance.nodes.TryGetValue(dest.dest.nodeId, out value))
+            {
+                value = instance.BuildNode(dest.dest);
+            }
+
+            target = value;
+        }
     }
 }

@@ -4,47 +4,51 @@ using UnityEngine;
 using UnityEngine.UI;
 using VRTour.Serialize;
 
-public class NodeBehaviour : MonoBehaviour {
-
-    [SerializeField]
-    private Text questionText;
-    [SerializeField]
-    private RectTransform destinationPanel;
-
-    private TourBuilderScriptable instance;
-    private Node node;
-
-    /// <summary>
-    /// Setup the node prefab with specific deserialized object n
-    /// </summary>
-    /// <param name="n">Deserialized Node object to setup</param>
-    /// <param name="tb">Tour Builder that is building this node</param>
-    public void Setup(Node n, TourBuilderScriptable tb)
+namespace VRTour
+{
+    public class NodeBehaviour : MonoBehaviour
     {
-        instance = tb;
-        node = n;
-        questionText.text = node.label;
 
-        transform.SetPositionAndRotation(node.position, Quaternion.Euler(node.rotation));
-        instance.nodes[node.nodeId] = this;
+        [SerializeField]
+        private Text questionText;
+        [SerializeField]
+        private RectTransform destinationPanel;
 
-        SetupNode();
-    }
+        private TourBuilderScriptable instance;
+        private Node node;
 
-    /// <summary>
-    /// Build out each destination object. 
-    /// </summary>
-    private void SetupNode()
-    {
-        int numAns = node.answers.Length;
-        float offset = destinationPanel.sizeDelta.y / numAns;
-        float curOffset = 0;
-        foreach (Destination d in node.answers)
+        /// <summary>
+        /// Setup the node prefab with specific deserialized object n
+        /// </summary>
+        /// <param name="n">Deserialized Node object to setup</param>
+        /// <param name="tb">Tour Builder that is building this node</param>
+        public void Setup(Node n, TourBuilderScriptable tb)
         {
-            AnswerBehaviour ans = instance.BuildAnswer(d, destinationPanel);
-            RectTransform curAns = (RectTransform)ans.transform;
-            curAns.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, curOffset, curAns.sizeDelta.y);
-            curOffset += offset;
+            instance = tb;
+            node = n;
+            questionText.text = node.label;
+
+            transform.SetPositionAndRotation(node.position, Quaternion.Euler(node.rotation));
+            instance.nodes[node.nodeId] = this;
+
+            SetupNode();
+        }
+
+        /// <summary>
+        /// Build out each destination object. 
+        /// </summary>
+        private void SetupNode()
+        {
+            int numAns = node.answers.Length;
+            float offset = destinationPanel.sizeDelta.y / numAns;
+            float curOffset = 0;
+            foreach (Destination d in node.answers)
+            {
+                AnswerBehaviour ans = instance.BuildAnswer(d, destinationPanel);
+                RectTransform curAns = (RectTransform)ans.transform;
+                curAns.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, curOffset, curAns.sizeDelta.y);
+                curOffset += offset;
+            }
         }
     }
 }
