@@ -57,6 +57,7 @@ namespace VRTour
             TourBehaviour tour = tourObj.GetComponent<TourBehaviour>();
             tour.Setup(toBuild, this);
             nodes = new Dictionary<int, NodeBehaviour>();
+
             BuildNodes(Utility.BuildDictionaryFromArray(toBuild.nodes));
         }
 

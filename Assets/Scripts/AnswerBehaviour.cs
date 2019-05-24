@@ -15,6 +15,7 @@ namespace VRTour
         [SerializeField]
         private Text ansText;
 
+
         public TourBuilderScriptable instance;
         private Button b;
 
