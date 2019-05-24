@@ -11,6 +11,7 @@ namespace VRTour
 
         public static GameManager instance = null;
 
+
         // Use this for initialization
         void Awake()
         {
