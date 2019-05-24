@@ -15,6 +15,7 @@ namespace VRTour
         [SerializeField]
         private Text ansText;
 
+
         public TourBuilderScriptable instance;
         private Button b;
 
@@ -38,18 +39,7 @@ namespace VRTour
             instance = tb;
             dest = d;
             ansText.text = dest.label;
-            SetupAnswer();
-        }
-
-        private void SetupAnswer()
-        {
-            NodeBehaviour value;
-            if (!instance.nodes.TryGetValue(dest.dest.nodeId, out value))
-            {
-                value = instance.BuildNode(dest.dest);
-            }
-
-            target = value;
+            target = tb.nodes[d.dest];
         }
     }
 }

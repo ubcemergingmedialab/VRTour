@@ -44,7 +44,6 @@ namespace VRTour
         /// </summary>
         public void BuildTour()
         {
-            nodes = new Dictionary<int, NodeBehaviour>();
             SetupTour();
 
         }
@@ -58,7 +57,16 @@ namespace VRTour
             TourBehaviour tour = tourObj.GetComponent<TourBehaviour>();
             tour.Setup(toBuild, this);
             nodes = new Dictionary<int, NodeBehaviour>();
-            BuildNode(toBuild.startPoint);
+
+            BuildNodes(Utility.BuildDictionaryFromArray(toBuild.nodes));
+        }
+
+        private void BuildNodes(Dictionary<int, Node> nodesToBuild)
+        {
+            foreach(Node n in nodesToBuild.Values)
+            {
+                nodes[n.nodeId] = BuildNode(n);
+            }
         }
 
         /// <summary>
