@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 using VRTour.Serialize;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VRTour
 {
@@ -57,7 +59,7 @@ namespace VRTour
                 {
                     loadStatus = "Loaded from file";
                     TextAsset json = (TextAsset)jsonFile;
-                    t = VRTour.Serialize.Utility.CreateFromJSON(json.text);
+                    t = Serialize.Utility.CreateFromJSON(json.text);
                     tb.LoadTour(t);
 
                 }
@@ -82,7 +84,8 @@ namespace VRTour
             else
             {
                 EditorUtility.DisplayDialog("Tour Builder", "Tour loaded OK!", "Ok");
-                Tour t = VRTour.Serialize.Utility.CreateFromJSON(www.downloadHandler.text);
+                JObject config = JObject.Parse(www.downloadHandler.text);
+                Tour t = Serialize.Utility.CreateFromJSON(config.SelectToken("config").ToString());
                 tb.LoadTour(t);
             }
             EditorApplication.update -= EditorUpdate;
