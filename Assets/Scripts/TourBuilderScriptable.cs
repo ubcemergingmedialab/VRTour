@@ -59,6 +59,7 @@ namespace VRTour
             nodes = new Dictionary<int, NodeBehaviour>();
 
             BuildNodes(Utility.BuildDictionaryFromArray(toBuild.nodes));
+            SetupNodes(Utility.BuildDictionaryFromArray(toBuild.nodes));
         }
 
         private void BuildNodes(Dictionary<int, Node> nodesToBuild)
@@ -66,6 +67,14 @@ namespace VRTour
             foreach(Node n in nodesToBuild.Values)
             {
                 nodes[n.nodeId] = BuildNode(n);
+            }
+        }
+
+        private void SetupNodes(Dictionary<int, Node> nodesToBuild)
+        {
+            foreach (Node n in nodesToBuild.Values)
+            {
+                nodes[n.nodeId].Setup(n, this);
             }
         }
 
@@ -79,7 +88,7 @@ namespace VRTour
             GameObject nodeObj = Instantiate(nodePrefab, tourObj.transform);
             NodeBehaviour toReturn = nodeObj.GetComponent<NodeBehaviour>();
             //Constructs the node based on the deserialized node in toBuild and adds it to nodes
-            toReturn.Setup(toBuild, this);
+            //toReturn.Setup(toBuild, this);
             return toReturn;
 
         }

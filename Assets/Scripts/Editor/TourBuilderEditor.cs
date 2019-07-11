@@ -83,7 +83,7 @@ namespace VRTour
             }
             else
             {
-                EditorUtility.DisplayDialog("Tour Builder", "Tour loaded OK!", "Ok");
+                //EditorUtility.DisplayDialog("Tour Builder", "Tour loaded OK!", "Ok");
                 JObject config = JObject.Parse(www.downloadHandler.text);
                 //Parse result for Tour specification. drop things like name and ID
                 Tour t = Serialize.Utility.CreateFromJSON(config.SelectToken("config").ToString());

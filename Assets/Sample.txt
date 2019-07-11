@@ -1,33 +1,70 @@
-{
-"name":"test",
-"startPoint":{
-	"nodeId":0,
-	"position":{"x":0,"y":0,"z":0},
-	"rotation":{"x":0,"y":0,"z":0},
-	"label":"Sample Question",
-	"answers":[{
-		"label":"Answer 1",
-		"dest":{
-			"nodeId":1,
-			"position":{"x":4,"y":0,"z":4},
-			"rotation":{"x":0,"y":180,"z":0},
-			"label":"Correct",
-			"answers":[
-				{"label":"answer 3",
-				"dest":{
-					"nodeId":3,
-					"position":{"x":7,"y":0,"z":0},
-					"rotation":{"x":0,"y":0,"z":0},
-					"label":"End",
-					"answers":[]}}]
-		}},{
-		"label":"Answer 2",
-		"dest":{
-			"nodeId":2,
-			"position":{"x":3,"y":0,"z":3},
-			"rotation":{"x":-30,"y":0,"z":0},
-			"label":"Dead End",
-			"answers":[]
-		}}]
-	}
+{  
+   "name":"test",
+   "startPoint":0,
+   "nodes":[  
+      {  
+         "nodeId":0,
+         "position":{  
+            "x":14.12061,
+            "y":13.82603,
+            "z":-10.16468
+         },
+         "rotation":{  
+            "x":0,
+            "y":90,
+            "z":0
+         },
+         "label":"0",
+         "answers":[  
+            {  
+               "label":"1",
+               "dest":1
+            },
+            {  
+               "label":"2",
+               "dest":2
+            }
+         ]
+      },
+      {  
+         "nodeId":1,
+         "position":{  
+            "x":30,
+            "y":0,
+            "z":-30
+         },
+         "rotation":{  
+            "x":270,
+            "y":150,
+            "z":0
+         },
+         "label":"1",
+         "answers":[  
+            {  
+               "label":"0",
+               "dest":0
+            }
+         ]
+      },
+      {  
+         "nodeId":2,
+         "position":{  
+            "x":9.123451,
+            "y":11.14379,
+            "z":-1.764041
+         },
+         "rotation":{  
+            "x":270,
+            "y":180,
+            "z":0
+         },
+         "label":"2",
+         "answers":[  
+            {  
+               "label":"1",
+               "dest":1
+            }
+         ]
+      }
+   ]
 }
