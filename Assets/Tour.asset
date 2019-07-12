@@ -17,31 +17,28 @@ MonoBehaviour:
     type: 2}
   toBuild:
     name: test
-    id: 5cddeb16d73d75033843793d
-    startPoint:
-      nodeId: 0
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
-      label: Sample Question
+    startPoint: 0
+    nodes:
+    - nodeId: 0
+      position: {x: 10, y: 0, z: -10}
+      rotation: {x: 0, y: 90, z: 0}
+      label: 0
       answers:
-      - label: Answer 1
-        dest:
-          nodeId: 1
-          position: {x: 4, y: 0, z: 4}
-          rotation: {x: 0, y: 180, z: 0}
-          label: Correct
-          answers:
-          - label: answer 3
-            dest:
-              nodeId: 3
-              position: {x: 7, y: 0, z: 0}
-              rotation: {x: 0, y: 0, z: 0}
-              label: End
-              answers: []
-      - label: Answer 2
-        dest:
-          nodeId: 2
-          position: {x: 3, y: 0, z: 3}
-          rotation: {x: -30, y: 0, z: 0}
-          label: Dead End
-          answers: []
+      - label: 1
+        dest: 1
+      - label: 2
+        dest: 2
+    - nodeId: 1
+      position: {x: 5, y: 0, z: -5}
+      rotation: {x: 0, y: 0, z: 0}
+      label: 1
+      answers:
+      - label: 0
+        dest: 0
+    - nodeId: 2
+      position: {x: 5, y: 0, z: 0}
+      rotation: {x: 0, y: 180, z: 0}
+      label: 2
+      answers:
+      - label: 1
+        dest: 1
