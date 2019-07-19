@@ -13,9 +13,20 @@ namespace VRTour
         private Text questionText;
         [SerializeField]
         private RectTransform destinationPanel;
+        [SerializeField]
+        private GameObject sphere;
 
+        private Material defaultmat;
+        [SerializeField]
+        public Texture texture;
         private TourBuilderScriptable instance;
         private Node node;
+
+        private void Start()
+        {
+            defaultmat = sphere.GetComponent<MeshRenderer>().material;
+            defaultmat.SetTexture("_MainTex", texture);
+        }
 
         /// <summary>
         /// Setup the node prefab with specific deserialized object n
@@ -30,7 +41,7 @@ namespace VRTour
 
             transform.SetPositionAndRotation(node.position, Quaternion.Euler(node.rotation));
             instance.nodes[node.nodeId] = this;
-
+            
             SetupNode();
         }
 
