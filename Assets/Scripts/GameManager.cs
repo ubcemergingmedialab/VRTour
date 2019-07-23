@@ -9,10 +9,15 @@ namespace VRTour
         [SerializeField]
         private GameObject player;
         public CanvasGroup uiElement;
+        public GameObject Node0;
 
         public static GameManager instance = null;
 
         // Use this for initialization
+        private void Start()
+        {
+            player.transform.SetPositionAndRotation(Node0.transform.position, Node0.transform.rotation);
+        }
         void Awake()
         {
             if (instance != null)
@@ -64,6 +69,8 @@ namespace VRTour
                 cg.alpha = currentValue;
 
                 if (percentageComplete >= 1) break;
+
+                //
 
                 yield return new WaitForFixedUpdate();
             }

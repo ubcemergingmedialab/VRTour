@@ -358,6 +358,11 @@ Prefab:
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 896038772}
+    - target: {fileID: 114108616905526646, guid: abb2a827d5481dd468ca08c264c77171,
+        type: 2}
+      propertyPath: Node0
+      value: 
+      objectReference: {fileID: 1921674832}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abb2a827d5481dd468ca08c264c77171, type: 2}
   m_IsPrefabParent: 0
