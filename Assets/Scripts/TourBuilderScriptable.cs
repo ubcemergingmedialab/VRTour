@@ -60,6 +60,8 @@ namespace VRTour
 
             BuildNodes(Utility.BuildDictionaryFromArray(toBuild.nodes));
             SetupNodes(Utility.BuildDictionaryFromArray(toBuild.nodes));
+
+            tour.start = nodes[toBuild.startPoint];
         }
 
         private void BuildNodes(Dictionary<int, Node> nodesToBuild)

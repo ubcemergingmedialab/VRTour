@@ -9,14 +9,16 @@ namespace VRTour
         [SerializeField]
         private GameObject player;
         public CanvasGroup uiElement;
-        public GameObject Node0;
+
+        [SerializeField]
+        private TourBehaviour activeTour;
 
         public static GameManager instance = null;
 
         // Use this for initialization
         private void Start()
         {
-            player.transform.SetPositionAndRotation(Node0.transform.position, Node0.transform.rotation);
+            player.transform.SetPositionAndRotation(activeTour.start.transform.position, activeTour.start.transform.rotation);
         }
         void Awake()
         {

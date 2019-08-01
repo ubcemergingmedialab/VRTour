@@ -18,6 +18,8 @@ namespace VRTour
 
         private Tour tour;
 
+        public NodeBehaviour start;
+
         public TourBuilderScriptable instance;
 
         public void Setup(Tour t, TourBuilderScriptable tb)
